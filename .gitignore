@@ -1,8 +1,6 @@
-Library/
-Temp/
-.vs/
-.vscode/
-Logs/
+#Build
+/QrumpetWorld-1.0
+/QrumpetWorld
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
