@@ -500,11 +500,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 9123893830741136498, guid: bb3c85229a1e1473cb62f05ea8335d7e,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb3c85229a1e1473cb62f05ea8335d7e, type: 3}
 --- !u!1001 &2641720618825268877
