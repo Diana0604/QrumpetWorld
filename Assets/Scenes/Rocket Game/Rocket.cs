@@ -51,4 +51,20 @@ public class Rocket : MonoBehaviour
         ThrustSound();
         Rotate();
     }
+    //on collision
+    private void OnCollisionEnter(Collision collision) 
+    {
+        //print(collision.gameObject.tag);
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly" : 
+                //print("Friendly Collider");
+                break;
+            case "Fuel" : 
+                break;
+            default:
+                //print("Dead");
+                break;
+        }
+    }
 }
