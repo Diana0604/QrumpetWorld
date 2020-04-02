@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class MovingObstacles : MonoBehaviour
 {
-    float dir = 1f;
+    [SerializeField] bool startingUpwards = true;
+    float direction = 1f;
     Vector3 initialPos;
+    Vector3 lastChangePos;
     [SerializeField] float speed = 5f;
     [SerializeField] float changeDirAfter = 3.0f;
     Vector3 userDirection = Vector3.up;
@@ -14,20 +16,19 @@ public class MovingObstacles : MonoBehaviour
     void Start()
     {
         initialPos = transform.position;
+        lastChangePos = transform.position;
+        if(!startingUpwards) direction = direction * -1f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(Mathf.Floor(Time.time));
         Vector3 currentPos = transform.position;
-        if((currentPos - initialPos).magnitude > changeDirAfter) 
-        //if(Mathf.Floor(Time.time) != timeLastChange && Mathf.Floor(Time.time)%changeDirAfter == 0f)
+        if((currentPos - initialPos).magnitude > changeDirAfter && (currentPos - lastChangePos).magnitude > 0.5f)
         {
-            print("'changing dir'");
-            //timeLastChange = Mathf.Floor(Time.time);
-            dir = dir*-1f;
+            direction = direction*-1f;
+            lastChangePos = currentPos;
         }
-        transform.Translate(userDirection * dir * speed * Time.deltaTime); 
+        transform.Translate(userDirection * direction * speed * Time.deltaTime); 
     }
 }
