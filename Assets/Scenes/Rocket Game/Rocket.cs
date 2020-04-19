@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
@@ -8,11 +9,16 @@ public class Rocket : MonoBehaviour
     [SerializeField] float mainThrust = 100f;
     Rigidbody rigidBody;
     AudioSource audioData;
+    Scene scene;
+
+    enum State {Alive, Dying, Transcending};
+    State state = State.Alive;
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         audioData = GetComponent<AudioSource>();
+        scene = SceneManager.GetActiveScene();
         audioData.Play(0);
     }
 
@@ -48,22 +54,40 @@ public class Rocket : MonoBehaviour
     //check key pressed and move accordingly
     private void ProcessInput()
     {
+        if(state != State.Alive) return;
         ThrustSound();
         Rotate();
+    }
+    
+    void LoadNextScene()
+    {
+        SceneManager.LoadScene(scene.buildIndex + 1);
+    }
+
+    void LoadCurrentScene()
+    {
+        SceneManager.LoadScene(scene.buildIndex);
     }
     //on collision
     private void OnCollisionEnter(Collision collision) 
     {
-        //print(collision.gameObject.tag);
+        if(state != State.Alive) return;
         switch (collision.gameObject.tag)
         {
             case "Friendly" : 
-                //print("Friendly Collider");
                 break;
-            case "Fuel" : 
+            case "Finish" : 
+                state = State.Transcending;
+                if(scene.buildIndex < SceneManager.sceneCountInBuildSettings - 1)
+                {
+                    Invoke("LoadNextScene", 1f) ;
+                }
                 break;
             default:
-                //print("Dead");
+            {
+                state = State.Dying;
+                Invoke("LoadCurrentScene", 1f);
+            }
                 break;
         }
     }
