@@ -5,10 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
+    public delegate void Callback();
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 100f;
+    [SerializeField] AudioClip mainEngineClip;
+    [SerializeField] AudioClip deathClip;
+    [SerializeField] AudioClip finishLevelClip;
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem finishLevelParticles;
+    
     Rigidbody rigidBody;
-    AudioSource audioData;
+    AudioSource audioSource;
     Scene scene;
 
     enum State {Alive, Dying, Transcending};
@@ -17,9 +25,8 @@ public class Rocket : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-        audioData = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         scene = SceneManager.GetActiveScene();
-        audioData.Play(0);
     }
 
     // Update is called once per frame
@@ -41,21 +48,25 @@ public class Rocket : MonoBehaviour
         }
         rigidBody.freezeRotation = false ;
     }
-    private void ThrustSound()
+    
+    private void Thrust()
     {
         if(Input.GetKey(KeyCode.Space))
         {
             rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-            audioData.UnPause();
-        } else {
-            audioData.Pause();
+            if(!audioSource.isPlaying) audioSource.PlayOneShot(mainEngineClip);
+            mainEngineParticles.Play();
+        } 
+        else {
+            mainEngineParticles.Stop();
+            audioSource.Stop();
         }
     }
     //check key pressed and move accordingly
     private void ProcessInput()
     {
         if(state != State.Alive) return;
-        ThrustSound();
+        Thrust();
         Rotate();
     }
     
@@ -68,7 +79,20 @@ public class Rocket : MonoBehaviour
     {
         SceneManager.LoadScene(scene.buildIndex);
     }
-    //on collision
+    void playSoundAndRunMethod(AudioClip clip, Callback method)
+    {
+        audioSource.Stop();
+        audioSource.PlayOneShot(clip);
+        StartCoroutine(runAfterSound(method));
+    }
+    IEnumerator runAfterSound(Callback method)
+    {
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
+        method();
+    }
     private void OnCollisionEnter(Collision collision) 
     {
         if(state != State.Alive) return;
@@ -78,15 +102,12 @@ public class Rocket : MonoBehaviour
                 break;
             case "Finish" : 
                 state = State.Transcending;
-                if(scene.buildIndex < SceneManager.sceneCountInBuildSettings - 1)
-                {
-                    Invoke("LoadNextScene", 1f) ;
-                }
+                playSoundAndRunMethod(finishLevelClip, LoadNextScene);
                 break;
             default:
             {
                 state = State.Dying;
-                Invoke("LoadCurrentScene", 1f);
+                playSoundAndRunMethod(deathClip, LoadCurrentScene);
             }
                 break;
         }

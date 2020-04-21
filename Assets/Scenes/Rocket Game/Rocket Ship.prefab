@@ -465,8 +465,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2505714515578566966}
   - component: {fileID: 9123893830741136498}
-  - component: {fileID: 3776969437592578525}
   - component: {fileID: 9123893830741136499}
+  - component: {fileID: 1761239821}
   m_Layer: 0
   m_Name: Rocket Ship
   m_TagString: Untagged
@@ -483,7 +483,7 @@ Transform:
   m_GameObject: {fileID: 8644694006493174542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.3041, z: 1}
   m_Children:
   - {fileID: 4182319441772379252}
   - {fileID: 5683271613890690373}
@@ -509,7 +509,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 0
---- !u!82 &3776969437592578525
+--- !u!114 &9123893830741136499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8644694006493174542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29257dc6407d849f89d7cd51897ab0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rcsThrust: 300
+  mainThrust: 30
+  mainEngineClip: {fileID: 8300000, guid: 1eb4f83bf135a4698abb68a4f588b689, type: 3}
+  deathClip: {fileID: 8300000, guid: 8f26bd7a3c7394a249f15fd63ea403d4, type: 3}
+  finishLevelClip: {fileID: 8300000, guid: e8f552d6b9dde4fccb8f8d13233a0d5d, type: 3}
+  mainEngineParticles: {fileID: 198100719057022332, guid: a3553fd250eb92d4091bebde350c6739,
+    type: 3}
+  deathParticles: {fileID: 198204746014789312, guid: ab79a37535b979f48b6de56e3a0a5cb0,
+    type: 3}
+  finishLevelParticles: {fileID: 198631066050499358, guid: 62198a3a5dbb64a4f9e1618929224faa,
+    type: 3}
+--- !u!82 &1761239821
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -519,11 +542,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1eb4f83bf135a4698abb68a4f588b689, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -605,17 +628,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9123893830741136499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8644694006493174542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29257dc6407d849f89d7cd51897ab0ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rcsThrust: 300
-  mainThrust: 25

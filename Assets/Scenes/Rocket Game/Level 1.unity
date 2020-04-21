@@ -1757,6 +1757,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1761239821, guid: bb3c85229a1e1473cb62f05ea8335d7e, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2505714515578566966, guid: bb3c85229a1e1473cb62f05ea8335d7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1812,20 +1816,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2505714515578566966, guid: bb3c85229a1e1473cb62f05ea8335d7e,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3041
-      objectReference: {fileID: 0}
     - target: {fileID: 8644694006493174542, guid: bb3c85229a1e1473cb62f05ea8335d7e,
         type: 3}
       propertyPath: m_Name
       value: Rocket Ship
-      objectReference: {fileID: 0}
-    - target: {fileID: 9123893830741136499, guid: bb3c85229a1e1473cb62f05ea8335d7e,
-        type: 3}
-      propertyPath: mainThrust
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb3c85229a1e1473cb62f05ea8335d7e, type: 3}

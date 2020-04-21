@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Rocket Game/Level 1.unity
     guid: ba26aebf6c6754f1bb3ebe8654a5f3f2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Rocket Game/Level 2.unity
     guid: 19830bac4f2c141129eafa1ec0ef387d
   - enabled: 1
+    path: Assets/Scenes/Rocket Game/Finish.unity
+    guid: 2f2d6319eea0242ccb44286d8d138151
+  - enabled: 0
     path: Assets/Scenes/Qrumpet World/PS2.unity
     guid: 1026f5388891b4d3a84af922a21e56f2
   m_configObjects: {}
