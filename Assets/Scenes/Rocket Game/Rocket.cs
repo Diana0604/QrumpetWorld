@@ -79,13 +79,15 @@ public class Rocket : MonoBehaviour
     {
         SceneManager.LoadScene(scene.buildIndex);
     }
-    void playSoundAndRunMethod(AudioClip clip, Callback method)
+    void playSoundPlayParticlesAndRunMethod(AudioClip clip, ParticleSystem particleSystem, Callback method)
     {
+        mainEngineParticles.Stop();
         audioSource.Stop();
         audioSource.PlayOneShot(clip);
-        StartCoroutine(runAfterSound(method));
+        particleSystem.Play();
+        StartCoroutine(runAfterSound(particleSystem, method));
     }
-    IEnumerator runAfterSound(Callback method)
+    IEnumerator runAfterSound(ParticleSystem particleSystem, Callback method)
     {
         while (audioSource.isPlaying)
         {
@@ -102,12 +104,12 @@ public class Rocket : MonoBehaviour
                 break;
             case "Finish" : 
                 state = State.Transcending;
-                playSoundAndRunMethod(finishLevelClip, LoadNextScene);
+                playSoundPlayParticlesAndRunMethod(finishLevelClip, finishLevelParticles, LoadNextScene);
                 break;
             default:
             {
                 state = State.Dying;
-                playSoundAndRunMethod(deathClip, LoadCurrentScene);
+                playSoundPlayParticlesAndRunMethod(deathClip, deathParticles, LoadCurrentScene);
             }
                 break;
         }
