@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 #pragma warning disable 618, 649
 namespace UnityStandardAssets.Characters.FirstPerson
@@ -42,6 +44,21 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private GameObject bikeStation;
+
+        private void startStations()
+        {
+            displayText = GameObject.FindWithTag("Text").GetComponent<TextMesh>();
+            if(displayText == null)
+            {
+                print("display text NULL!");
+            }
+            bikeStation = GameObject.FindWithTag("BikeStation");
+            if(bikeStation == null)
+            {
+                print("bike station null");
+            }
+        }
 
         // Use this for initialization
         private void Start()
@@ -56,8 +73,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
-        }
 
+            startStations();
+        }
+        private TextMesh displayText;  //Add reference to UI Text here via the inspector
+        private float timeToAppear = 2f;
+        private float timeWhenDisappear;
+        private void CheckIfLight()
+        {
+            if(Vector3.Distance(transform.position, bikeStation.transform.position) < 5)
+            {
+                displayText.text = "Press SPACE to ride the bike";
+                 if(Input.GetKey(KeyCode.Space)) {SceneManager.LoadScene("Bike", LoadSceneMode.Single);}
+                //displayText.enabled = true;
+                //timeWhenDisappear = Time.time + timeToAppear;
+            }
+        }
 
         // Update is called once per frame
         private void Update()
@@ -82,6 +113,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            CheckIfLight();
         }
 
 
