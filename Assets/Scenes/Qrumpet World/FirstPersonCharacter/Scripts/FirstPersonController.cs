@@ -6,6 +6,7 @@ using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 
+
 #pragma warning disable 618, 649
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -44,22 +45,40 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
-        private GameObject bikeStation;
-
-        private void startStations()
+        //stations manager
+        struct StationsManager 
         {
-            displayText = GameObject.FindWithTag("Text").GetComponent<TextMesh>();
-            if(displayText == null)
+            public const KeyCode switchKey = KeyCode.Space;
+            public static GameObject[] stations;
+            public static TextMesh displayText;
+
+            public static void UpdateDisplayText(string stationName)
             {
-                print("display text NULL!");
+                displayText.text = "Press SPACE to enter " + stationName;
+                displayText.GetComponent<MeshRenderer>().enabled = true;
             }
-            bikeStation = GameObject.FindWithTag("BikeStation");
-            if(bikeStation == null)
+
+            public static void DisableText()
             {
-                print("bike station null");
+                displayText.GetComponent<MeshRenderer>().enabled = false;
+            }
+
+            public static void SwitchToStation(string stationName)
+            {
+                char[] stationChar = {'S','t','a','t','i','o','n'};
+                stationName = stationName.TrimEnd(stationChar);
+                stationName = stationName.Trim();
+                SceneManager.LoadScene(stationName, LoadSceneMode.Single);
+            }
+            public static void InitStationsManager()
+            {
+                displayText = GameObject.FindWithTag("Text").GetComponent<TextMesh>();
+                stations = GameObject.FindGameObjectsWithTag("Station");
             }
         }
+        
 
+        
         // Use this for initialization
         private void Start()
         {
@@ -73,21 +92,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
-
-            startStations();
+            StationsManager.InitStationsManager();
         }
-        private TextMesh displayText;  //Add reference to UI Text here via the inspector
-        private float timeToAppear = 2f;
-        private float timeWhenDisappear;
+
         private void CheckIfLight()
         {
-            if(Vector3.Distance(transform.position, bikeStation.transform.position) < 5)
+            foreach(GameObject station in StationsManager.stations)
             {
-                displayText.text = "Press SPACE to ride the bike";
-                 if(Input.GetKey(KeyCode.Space)) {SceneManager.LoadScene("Bike", LoadSceneMode.Single);}
-                //displayText.enabled = true;
-                //timeWhenDisappear = Time.time + timeToAppear;
+                if(Vector3.Distance(transform.position, station.transform.position) < 3)
+                {
+                    string stationName = station.name;
+                    StationsManager.UpdateDisplayText(stationName);
+                    if(Input.GetKey(StationsManager.switchKey)) StationsManager.SwitchToStation(stationName);
+                    return;
+                }
             }
+            StationsManager.DisableText();
         }
 
         // Update is called once per frame
@@ -113,7 +133,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
-
             CheckIfLight();
         }
 

@@ -525,7 +525,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898516279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.68, y: 2.96, z: 16.63}
+  m_LocalPosition: {x: -13.649, y: 2.96, z: 16.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1688500701}
@@ -1229,6 +1229,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prep Station 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1227292801445591379, guid: bb24b35fb1441497e9f08a7dadcda522,
+        type: 3}
+      propertyPath: m_TagString
+      value: Station
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb24b35fb1441497e9f08a7dadcda522, type: 3}
 --- !u!1001 &886084187594670991
@@ -1298,6 +1303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checker Station
       objectReference: {fileID: 0}
+    - target: {fileID: 886084187323906675, guid: fb42fa50d35ed4fbd9d78b9c13d69a48,
+        type: 3}
+      propertyPath: m_TagString
+      value: Station
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb42fa50d35ed4fbd9d78b9c13d69a48, type: 3}
 --- !u!1001 &986990607115803301
@@ -1320,7 +1330,7 @@ PrefabInstance:
     - target: {fileID: 1234393891347777583, guid: 3c0c795590ef5410287beadbd7fab6a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1234393891347777583, guid: 3c0c795590ef5410287beadbd7fab6a4,
         type: 3}
@@ -1366,6 +1376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shouting Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291086079865657941, guid: 3c0c795590ef5410287beadbd7fab6a4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Station
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0c795590ef5410287beadbd7fab6a4, type: 3}
@@ -1643,6 +1658,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Throwing Station
       objectReference: {fileID: 0}
+    - target: {fileID: 3342633154994084361, guid: 69821ac9769b542e19100458c796f4b8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Station
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69821ac9769b542e19100458c796f4b8, type: 3}
 --- !u!1001 &4711151282573156553
@@ -1665,7 +1685,7 @@ PrefabInstance:
     - target: {fileID: 3384343849182591698, guid: 09da4de435f0a4167896a760a0ef1a72,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.37
+      value: -0.100000024
       objectReference: {fileID: 0}
     - target: {fileID: 3384343849182591698, guid: 09da4de435f0a4167896a760a0ef1a72,
         type: 3}
@@ -1711,6 +1731,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Data Collection Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237547852906294283, guid: 09da4de435f0a4167896a760a0ef1a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: Station
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09da4de435f0a4167896a760a0ef1a72, type: 3}
@@ -1877,12 +1902,17 @@ PrefabInstance:
     - target: {fileID: 3527594308475899831, guid: 876e830da9e71477f89fec013e0635a9,
         type: 3}
       propertyPath: m_TagString
-      value: BikeStation
+      value: Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745287973182695702, guid: 876e830da9e71477f89fec013e0635a9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6558169124492020854, guid: 876e830da9e71477f89fec013e0635a9,
         type: 3}
       propertyPath: m_TagString
-      value: BikeStation
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7359198758283390106, guid: 876e830da9e71477f89fec013e0635a9,
         type: 3}
@@ -2076,6 +2106,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Prep Station 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215030145662466005, guid: 64f036c4d9de5494bad06eab0f837cb0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Station
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64f036c4d9de5494bad06eab0f837cb0, type: 3}

@@ -8,8 +8,8 @@ TagManager:
   - Fuel
   - Fire
   - Bike
-  - BikeStation
   - Text
+  - Station
   layers:
   - Default
   - TransparentFX
